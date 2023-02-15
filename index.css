@@ -43,3 +43,18 @@ body {
     flex-direction: column;
     font-size: 2rem;
 }
+
+.loading-screen {
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Arial';
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    visibility: visible;
+}

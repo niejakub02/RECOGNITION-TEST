@@ -1,4 +1,5 @@
 const box = document.querySelector('.input-box');
+const loadingScreen = document.querySelector('.loading-screen');
 const coord = { x: 0, y: 0 };
 const canvasList = [];
 const contextList = [];
@@ -9,7 +10,8 @@ const charactersList = ['話', '夕', '悪', '明', '目', '無', '理', '道', 
 // MODEL
 var model = null
 async function loadMyModel() {
-    model = await tf.loadLayersModel('model/model.json')
+    model = await tf.loadLayersModel('model/model.json');
+    loadingScreen.style.visibility = 'hidden';
 }
 
 
@@ -76,8 +78,8 @@ const clearCanvas = (e) => {
 }
 
 const predict = async (e) => {
-    document.body.style.background = 'gray';
-    if (contextList.length <= 0 ) return;
+    if (contextList.length <= 0 || !model) return;
+    loadingScreen.style.visibility = 'visible';
 
     const virtualCanvas = document.createElement('canvas');
     virtualCanvas.height = 512;
@@ -114,7 +116,7 @@ const predict = async (e) => {
         for (let [i, res] of results.entries()) {
             resultsLi[i].innerText = `${res.literal} - ${res.val.toFixed(2)}`
         }
-        document.body.style.background = 'whitesmoke'
+        loadingScreen.style.visibility = 'hidden';
     }
 }
 
