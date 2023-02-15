@@ -78,7 +78,7 @@ const clearCanvas = (e) => {
 }
 
 const predict = async (e) => {
-    if (contextList.length <= 0 || !model) return;
+    if (contextList.length <= 0) return;
     loadingScreen.style.visibility = 'visible';
 
     const virtualCanvas = document.createElement('canvas');
